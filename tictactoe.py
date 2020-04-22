@@ -226,16 +226,20 @@ while running:
             running = False
 
     screen.fill(color1)
+    if playing and win(game) >= 0:
+        playing = False
+        menu = False
+        winner = win(game)
+    
     if playing and player == cpu:
         move = cpu_move(game, player)
         game[move[0]][move[1]] = player
         player = abs(cpu - 1)
         update = True
-
-    if playing and win(game) >= 0:
-        playing = False
-        menu = False
-        winner = win(game)
+        if playing and win(game) >= 0:
+            playing = False
+            menu = False
+            winner = win(game)
 
     if not update:
         continue
